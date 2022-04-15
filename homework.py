@@ -8,8 +8,7 @@ class InfoMessage:
         """
         :param training_type: — имя класса тренировки;
         :param duration: — длительность тренировки в часах;
-        :param distance: — дистанция в километрах, которую преодолел
-        пользователь за время тренировки;
+        :param distance: — дистанция в километрах, которую преодолел пользователь за время тренировки;
         :param speed: — средняя скорость, с которой двигался пользователь;
         :param calories: — количество килокалорий, которое израсходовал
         пользователь за время тренировки.
@@ -45,8 +44,7 @@ class Training:
     def __init__(self, action: int, duration: float, weight: float, ) -> None:
         """Конструктор родительского класса, принимает следующие параметры:
 
-        :param action: количество совершённых действий (число шагов при
-        ходьбе и беге либо гребков — при плавании).
+        :param action: количество совершённых действий (число шагов при ходьбе и беге либо гребков — при плавании).
         :param duration: длительность тренировки.
         :param weight: вес спортсмена.
         :return: возвращает экземпляр класса Training/дочернего класса."""
@@ -90,14 +88,14 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         return (
-                (
-                        self.coeff_calorie_1
-                        * self.get_mean_speed()
-                        - self.coeff_calorie_2
-                )
-                * self.weight
-                / self.M_IN_KM
-                * self.duration_in_min
+            (
+                self.coeff_calorie_1
+                * self.get_mean_speed()
+                - self.coeff_calorie_2
+            )
+            * self.weight
+            / self.M_IN_KM
+            * self.duration_in_min
         )
 
 
@@ -120,17 +118,17 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         return (
-                (
-                        self.coeff_calorie_1
-                        * self.weight
-                        + (
-                                self.get_mean_speed()
-                                ** self.coeff_calorie_2
-                                // self.height
-                        )
-                        * self.coeff_calorie_3 * self.weight
+            (
+                self.coeff_calorie_1
+                * self.weight
+                + (
+                    self.get_mean_speed()
+                    ** self.coeff_calorie_2
+                    // self.height
                 )
-                * self.duration_in_min
+                * self.coeff_calorie_3 * self.weight
+            )
+            * self.duration_in_min
         )
 
 
@@ -156,17 +154,17 @@ class Swimming(Training):
         coeff_calorie_2: int = 2
 
         return (
-                (self.get_mean_speed() + coeff_calorie_1)
-                * coeff_calorie_2
-                * self.weight
+            (self.get_mean_speed() + coeff_calorie_1)
+            * coeff_calorie_2
+            * self.weight
         )
 
     def get_mean_speed(self):
         return (
-                self.length_pool
-                * self.count_pool
-                / self.M_IN_KM
-                / self.duration
+            self.length_pool
+            * self.count_pool
+            / self.M_IN_KM
+            / self.duration
         )
 
 
