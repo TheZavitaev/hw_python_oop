@@ -181,7 +181,7 @@ def read_package(workout_type: str, data: list) -> Training:
 
     if workout_type not in WORKOUT_TYPES:
         acceptable_types_training = ', '.join(WORKOUT_TYPES)
-        raise (
+        raise KeyError(
             f'Получен неизвестный тип тренировки - {workout_type}.'
             f'Допустимые значения - {acceptable_types_training}'
         )
